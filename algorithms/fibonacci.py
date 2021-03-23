@@ -4,8 +4,11 @@
 def fibo_meme(func):
     """Return memoized results from func(n).
 
-    :func: A function. Can be wrapped normally or using decorator syntax.
-    returns: memoize, a wrapped function that performs lookups in a dict
+    Args:
+        func: A function. Can be wrapped normally or using decorator syntax.
+
+    Returns:
+        memoize: a wrapped function that performs lookups in a dict
     """
     mem = {}
 
@@ -22,8 +25,11 @@ def fibo_meme(func):
 def fibonacci(n):
     """Return Fibonacci sequence of n.
 
-    :n: integer
-    :returns: sum of nth term in fibonacci
+    Args: 
+        n (int): An integer
+
+    Returns:
+        sum of nth term in fibonacci
     """
     if n == 0:
         return 0
