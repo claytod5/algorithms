@@ -2,20 +2,6 @@
 algorithms
 ==========
 
-
-.. image:: https://img.shields.io/pypi/v/algorithms.svg
-        :target: https://pypi.python.org/pypi/algorithms
-
-.. image:: https://img.shields.io/travis/claytod5/algorithms.svg
-        :target: https://travis-ci.com/claytod5/algorithms
-
-.. image:: https://readthedocs.org/projects/algorithms/badge/?version=latest
-        :target: https://algorithms.readthedocs.io/en/latest/?badge=latest
-        :alt: Documentation Status
-
-
-
-
 A collection of data structures and algorithms written by me to help me learn about them.
 
 
@@ -39,10 +25,6 @@ Usage
 
 Installation
 ------------
-
-Installing with pipx from Github::
-
-        pipx install git+https://www.github.com/claytod5/algorithms
 
 Installing with pip from Github::
 
