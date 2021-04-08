@@ -1,4 +1,4 @@
-"""Tests for algorithms/data_structures/queue.py"""
+"""Tests for algorithms/data_structures/collections/queue.py"""
 
 from algorithms.data_structures.collections.queue import Queue
 
@@ -15,8 +15,9 @@ class TestQueue:
 
     def test_enqueue(self):
         self.a.enqueue("ni")
-        assert self.a.items[0] == "ni"
+        assert self.a.head.data == "ni"
 
     def test_dequeue(self):
-        assert self.a.dequeue() == "circus"
+        popped = self.a.dequeue()
+        popped.data == "circus"
         assert self.test_size

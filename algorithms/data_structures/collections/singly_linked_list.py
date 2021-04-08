@@ -87,7 +87,7 @@ class SinglyLinkedList:
 
 
 if __name__ == "__main__":
-    a = LinkedList("a", "b", "c", "d", "e", "f", "g", "h", "i")
+    a = SinglyLinkedList("a", "b", "c", "d", "e", "f", "g", "h", "i")
     print(a)
     # print(a.popFirst())
     # print(a)
