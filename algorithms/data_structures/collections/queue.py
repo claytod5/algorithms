@@ -12,29 +12,17 @@ class Queue(DoublyLinkedList):
     """
 
     def enqueue(self, item):
-        """Add a new item to the rear of the queue.
-
-        Note:
-            Because this implementation uses a Python list, enqueue() takes log(n),
-            whereas a proper implementation should be constant.
-        """
-        # self.items.insert(0, item)
-        DoublyLinkedList.prepend(item)
+        """Add a new item to the rear of the queue."""
+        DoublyLinkedList.prepend(self, item)
 
     def dequeue(self):
         """Remove the front item from the queue."""
-        # return self.items.pop()
-        DoublyLinkedList.pop()
+        return DoublyLinkedList.pop(self)
 
     def size(self):
         """Return the number of items in the queue."""
-        # return len(self.items)
-        pass
+        return self.index(self.tail.data) + 1
 
     def isEmpty(self):
         """Test to see whether the queue is empty."""
-        # if self.items:
-        #     return False
-        # else:
-        #     return True
-        DoublyLinkedList.isEmpty()
+        return DoublyLinkedList.isEmpty(self)

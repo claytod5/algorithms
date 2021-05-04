@@ -1,11 +1,11 @@
 """Tests for linkedlist implementations."""
 
-import algorithms.data_structures.collections.linked_list.LinkedList
+import algorithms.data_structures.collections.singly_linked_list.SinglyLinkedList
 
 
-class TestLinkedList:
+class TestSinglyLinkedList:
     
-    a = LinkedList(14, 'a', 65.7, 'golf')
+    a = SinglyLinkedList(14, 'a', 65.7, 'golf')
 
     def test_isEmpty(self):
         assert self.a.isEmpty() == False 

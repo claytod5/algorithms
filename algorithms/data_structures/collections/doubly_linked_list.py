@@ -1,6 +1,6 @@
 """Implementation of a doubly linked-list in Python."""
 
-from algorithms.data_structures.collections.linked_list import SinglyLinkedList
+from algorithms.data_structures.collections.singly_linked_list import SinglyLinkedList
 from algorithms.data_structures.node import DoublyLinkedNode
 
 
@@ -43,16 +43,6 @@ class DoublyLinkedList(SinglyLinkedList):
             curr.next.prev = prev
         else:
             return "Not Found"
-
-    def __str__(self):
-        node = self.head
-        out = []
-
-        while node is not None:
-            out.append(node.data)
-            node = node.next
-
-        return " -> ".join(out)
 
 
 if __name__ == "__main__":
