@@ -37,7 +37,7 @@ class SinglyLinkedList:
             self.tail.next = temp
             self.tail = temp
 
-    def popFirst(self):
+    def pop_first(self):
         head = self.head
         self.head = self.head.next
         head.next = None
@@ -47,7 +47,7 @@ class SinglyLinkedList:
         previous = None
         current = self.head
 
-        while current.next is not None:
+        while current is not None:
             if current.data == item:
                 return previous, current
             else:
@@ -61,6 +61,8 @@ class SinglyLinkedList:
         if res is not None:
             prev, curr = res
             prev.next = curr.next
+            if self.tail == curr:
+                self.tail = prev
         else:
             return "Not Found"
 
@@ -80,7 +82,7 @@ class SinglyLinkedList:
         out = []
 
         while node is not None:
-            out.append(node.data)
+            out.append(str(node.data))
             node = node.next
 
         return " -> ".join(out)
