@@ -1,17 +1,18 @@
 from random import randint
 from timeit import Timer
 
+# pivot = sorted([a[0], a[len(a) // 2], a[-1]])[1] # median of 3
 
-def quicksort(array):
-    if len(array) < 2:
-        return array
+
+def quicksort(a):
+    if len(a) < 2:
+        return a
     else:
-        # pivot = sorted([array[0], array[len(array) // 2], array[-1]])[1] # median of 3
-        pivot = array[0]
-        less = [i for i in array[1:] if i <= pivot]
-        greater = [i for i in array[1:] if i > pivot]
+        pivot = a[0]
+        left = [i for i in a[1:] if i <= pivot]
+        right = [i for i in a[1:] if i > pivot]
 
-        return quicksort(less) + [pivot] + quicksort(greater)
+        return quicksort[left] + [pivot] + quicksort[right]
 
 
 if __name__ == "__main__":
