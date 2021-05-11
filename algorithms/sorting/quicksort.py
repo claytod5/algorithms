@@ -12,7 +12,7 @@ def quicksort(a):
         left = [i for i in a[1:] if i <= pivot]
         right = [i for i in a[1:] if i > pivot]
 
-        return quicksort[left] + [pivot] + quicksort[right]
+        return quicksort(left) + [pivot] + quicksort(right)
 
 
 if __name__ == "__main__":
