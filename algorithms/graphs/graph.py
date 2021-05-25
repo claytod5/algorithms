@@ -19,6 +19,7 @@ class Graph:
             self.vertices[f].append(t)
 
     def bfs(self, start):
+        """Return a set which contains the paths available from start."""
         visited = set()
         queue = deque()
         queue.appendleft(start)
@@ -34,6 +35,31 @@ class Graph:
 
         return visited
 
+    def bfs_path(self, start, end):
+        "Return a list showing the shortest path from start to end."
+        visited = set()
+        queue = deque()
+        queue.appendleft([start])
+
+        while queue:
+            path = queue.popleft()
+
+            vertex = path[-1]
+
+            if vertex == end:
+                return path
+
+            elif vertex not in visited:
+                for adjacent_vertex in self.vertices[vertex]:
+                    new_path = list(path)
+                    new_path.append(adjacent_vertex)
+                    queue.append(new_path)
+
+                    if adjacent_vertex == end:
+                        return new_path
+
+                visited.add(vertex)
+
 
 if __name__ == "__main__":
     g = Graph()
@@ -45,4 +71,4 @@ if __name__ == "__main__":
     g.add_edge(4, 2)
     g.add_edge(4, 1)
     g.add_edge(4, 3)
-    print(g.bfs(3))
+    print(g.bfs_path(3, 1))
