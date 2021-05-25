@@ -1,19 +1,41 @@
 #!/usr/bin/env python
 
+from timeit import Timer
+
 
 def binary_search(a, x):
-    idx = None
-    mid = len(a) // 2
-    while idx is None:
-        if x > a[mid]:
-            mid = len(a[mid:]) // 2
-        elif x < a[mid]:
-            mid = len(a[:mid]) // 2
+    """Find index of x in a in logarithmic time."""
+    low = 0
+    high = len(a) - 1
+
+    while low <= high:
+        mid = (low + high) // 2
+        guess = a[mid]
+
+        if guess == x:
+            return mid
+        elif guess < x:
+            low = mid + 1
         else:
-            idx = mid
-    return mid
+            high = mid - 1
+
+    return None
+
+
+def simple_search(a, x):
+    """Implement simple search to compare time complexity with binary_search."""
+    for i, each in enumerate(a):
+        if each == x:
+            return i
+    else:
+        return None
 
 
 if __name__ == "__main__":
-    test = [1, 2, 3, 5, 6, 7, 8, 9, 10, 12, 13, 14, 15]
-    print(binary_search(test, 13))
+    test = [each for each in range(0, 100000000)]
+
+    t1 = Timer("binary_search(test, 624)", "from __main__ import test, binary_search")
+    print("binary_search(test, 96240000): ", t1.timeit(number=1000), "milliseconds")
+
+    t2 = Timer("simple_search(test, 624)", "from __main__ import test, simple_search")
+    print("simple_search(test, 96240000): ", t2.timeit(number=1000), "milliseconds")
