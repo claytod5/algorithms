@@ -29,13 +29,3 @@ def simple_search(a, x):
             return i
     else:
         return None
-
-
-if __name__ == "__main__":
-    test = [each for each in range(0, 100000000)]
-
-    t1 = Timer("binary_search(test, 624)", "from __main__ import test, binary_search")
-    print("binary_search(test, 96240000): ", t1.timeit(number=1000), "milliseconds")
-
-    t2 = Timer("simple_search(test, 624)", "from __main__ import test, simple_search")
-    print("simple_search(test, 96240000): ", t2.timeit(number=1000), "milliseconds")

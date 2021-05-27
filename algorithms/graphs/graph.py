@@ -33,24 +33,23 @@ class Graph:
         return self.vertices.keys()
 
     def bfs(self, start):
-        start = self.get_vertex(start)
-        if start is not None:
-            visited = set()
+        start_vertex = self.get_vertex(start)
+        if start_vertex is not None:
+            start_vertex.visited = True
             vertex_queue = deque()
-            vertex_queue.appendleft(start)
+            vertex_queue.appendleft(start_vertex)
 
             while vertex_queue:
                 current_vertex = vertex_queue.pop()
 
                 for nbr in current_vertex.get_connections():
-                    if nbr not in visited:
+                    if nbr.visited is False:
                         nbr.pred = current_vertex
                         vertex_queue.appendleft(nbr)
-                        visited.add(nbr)
+                        nbr.visited = True
 
-            return visited
-
-    def bfs_path(self, start, end):
+    def path(self, start, end):
+        # bfs or dfs needs to be ran prior to this to create the predecessor hierarchy
         start, end = self.get_vertex(start), self.get_vertex(end)
         path = [end.id]
         while path[-1] != start.id:
@@ -59,6 +58,26 @@ class Graph:
                 path.append(temp.pred.id)
         path.reverse()
         return path
+
+    def dfs(self, start):
+        start_vertex = self.get_vertex(start)
+        start_vertex.visited = True
+        for next_vertex in start_vertex.get_connections():
+            if next_vertex.visited is False:
+                next_vertex.pred = start_vertex
+                self.dfs(next_vertex.id)
+
+    def dijkstra(self, start):
+        pq = [(v.distance, v) for v in self.vertices.values()]
+        start.distance = 0
+        while pq:
+            current_vert = None
+            for next_vert in current_vert.get_connections():
+                new_dist = current_vert.distance + current_vert.get_weight(next_vert)
+            if new_dist < next_vert.distance:
+                next_vert.distance = new_dist
+                next_vert.pred = current_vert
+                pass
 
 
 if __name__ == "__main__":
@@ -75,5 +94,5 @@ if __name__ == "__main__":
 
     # print(g.get_vertex(2))
 
-    # g.bfs(2)
-    print(g.bfs_path(2, 9))
+    g.dfs(1)
+    print(g.path(1, 9))

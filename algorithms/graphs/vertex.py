@@ -4,6 +4,7 @@ class Vertex:
         self.connected_to = {}
         self.pred = None
         self.distance = float("inf")
+        self.visited = False
 
     def add_neighbor(self, nbr, weight=0):
         self.connected_to[nbr] = weight
@@ -12,7 +13,7 @@ class Vertex:
         return self.neighbors[nbr]
 
     def get_connections(self):
-        return self.connected_to.keys()
+        return self.connected_to.keys()  # returns dict_keys object
 
 
 if __name__ == "__main__":
