@@ -1,74 +1,79 @@
-#!/usr/bin/env python
-
 from collections import deque
+
+from vertex import Vertex
+
+# from algorithms.data_structures.collections.queue import Queue
 
 
 class Graph:
     def __init__(self):
         self.vertices = {}
+        self.numVertices = 0
 
-    def __contains__(self, n):
-        return n in self.vertices
+    def _addVertex(self, key):
+        self.numVertices = self.numVertices + 1
+        newVertex = Vertex(key)
+        self.vertices[key] = newVertex
+        # return newVertex
 
-    def add_edge(self, f, t):
-        if t not in self.vertices:
-            self.vertices[t] = []
-        if f not in self.vertices:
-            self.vertices[f] = [t]
+    def get_vertex(self, n):
+        if n in self.vertices:
+            return self.vertices[n]
         else:
-            self.vertices[f].append(t)
+            return None
+
+    def add_edge(self, f, t, weight=0):
+        if f not in self.vertices:
+            self._addVertex(f)
+        if t not in self.vertices:
+            self._addVertex(t)
+        self.vertices[f].add_neighbor(self.vertices[t], weight)
+
+    def get_vertices(self):
+        return self.vertices.keys()
 
     def bfs(self, start):
-        """Return a set which contains the paths available from start."""
-        visited = set()
-        queue = deque()
-        queue.appendleft(start)
-        visited.add(start)
+        start = self.get_vertex(start)
+        if start is not None:
+            visited = set()
+            vertex_queue = deque()
+            vertex_queue.appendleft(start)
 
-        while queue:
-            vertex = queue.pop()
+            while vertex_queue:
+                current_vertex = vertex_queue.pop()
 
-            for adjacent_vertex in self.vertices[vertex]:
-                if adjacent_vertex not in visited:
-                    queue.appendleft(adjacent_vertex)
-                    visited.add(adjacent_vertex)
+                for nbr in current_vertex.get_connections():
+                    if nbr not in visited:
+                        nbr.pred = current_vertex
+                        vertex_queue.appendleft(nbr)
+                        visited.add(nbr)
 
-        return visited
+            return visited
 
     def bfs_path(self, start, end):
-        "Return a list showing the shortest path from start to end."
-        visited = set()
-        queue = deque()
-        queue.appendleft([start])
-
-        while queue:
-            path = queue.popleft()
-
-            vertex = path[-1]
-
-            if vertex == end:
-                return path
-
-            elif vertex not in visited:
-                for adjacent_vertex in self.vertices[vertex]:
-                    new_path = list(path)
-                    new_path.append(adjacent_vertex)
-                    queue.append(new_path)
-
-                    if adjacent_vertex == end:
-                        return new_path
-
-                visited.add(vertex)
+        start, end = self.get_vertex(start), self.get_vertex(end)
+        path = [end.id]
+        while path[-1] != start.id:
+            temp = self.get_vertex(path[-1])
+            if temp is not None:
+                path.append(temp.pred.id)
+        path.reverse()
+        return path
 
 
 if __name__ == "__main__":
     g = Graph()
-    g.add_edge(0, 1)
-    g.add_edge(0, 2)
     g.add_edge(1, 2)
-    g.add_edge(3, 2)
-    g.add_edge(3, 4)
-    g.add_edge(4, 2)
-    g.add_edge(4, 1)
-    g.add_edge(4, 3)
-    print(g.bfs_path(3, 1))
+    g.add_edge(1, 3)
+    g.add_edge(1, 4)
+    g.add_edge(2, 5)
+    g.add_edge(2, 6)
+    g.add_edge(5, 9)
+    g.add_edge(5, 10)
+    g.add_edge(7, 8)
+    g.add_edge(11, 12)
+
+    # print(g.get_vertex(2))
+
+    # g.bfs(2)
+    print(g.bfs_path(2, 9))
