@@ -7,6 +7,7 @@ import pytest_mock
 
 from algorithms.binary_search import binary_search
 from algorithms.fibonacci import fibonacci
+from algorithms.is_prime import is_prime
 
 
 @pytest.mark.parametrize(
@@ -39,3 +40,20 @@ def test_fibonacci(n, result):
 def test_binary_search(n, result):
     a = [each for each in range(13, 1000000, 3)]
     assert binary_search(a, n) == result
+
+
+@pytest.mark.parametrize(
+    "n, result",
+    [
+        (0, False),
+        (1, False),
+        (2, True),
+        (3, True),
+        (4, False),
+        (984, False),
+        (10342, False),
+        (12347, True),
+    ],
+)
+def test_is_prime(n, result):
+    assert is_prime(n) == result
