@@ -1,4 +1,18 @@
 class Vertex:
+    """A node/vertex containing a key and data pertaining to edges.
+
+    Attributes:
+        id: The key that this vertex holds.
+        connected_to (dict): A dictionary of vertex objects that this vertex has edges
+            with. If weight is included as an argument to add_neighbor(), the weight is
+            included as the value in the {key: value} pair.
+        pred: Tracks which vertex is the predecessor of the current vertex.
+        distance (int): Represents the cost of a path from the starting node. Infinity
+        by default
+        visited: Tracks whether or not this node has already been visited in a search
+            algorithm.
+    """
+
     def __init__(self, key):
         self.id = key
         self.connected_to = {}
