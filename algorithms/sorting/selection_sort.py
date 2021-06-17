@@ -3,8 +3,6 @@
 Running time: O(n**2)
 """
 
-import random
-
 
 def selection_sort(a_list):
     for i in range(len(a_list)):
