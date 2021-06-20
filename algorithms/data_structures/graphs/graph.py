@@ -2,6 +2,8 @@ from collections import deque
 
 from vertex import Vertex
 
+from algorithms.data_structures.trees.priority_queue import PriorityQueue
+
 # from algorithms.data_structures.collections.queue import Queue
 
 
@@ -68,16 +70,31 @@ class Graph:
                 self.dfs(next_vertex.id)
 
     def dijkstra(self, start):
-        pq = [(v.distance, v) for v in self.vertices.values()]
+        pq = PriorityQueue()
         start.distance = 0
-        while pq:
-            current_vert = None
+
+        # key is each vertex distance
+        pq.build_heap([(v.distance, v) for v in self.vertices])
+
+        while not pq.is_empty():
+            current_vert = pq.pop_min()  # get minimum-distanced vertex from pq
+
+            # loop through each of that vertex's connections
             for next_vert in current_vert.get_connections():
+                # calculate the next vertex's distance when going via current vert
                 new_dist = current_vert.distance + current_vert.get_weight(next_vert)
+
+            # if the new calcuated distance is cheaper...
             if new_dist < next_vert.distance:
-                next_vert.distance = new_dist
+                next_vert.distance = new_dist  # set the distance to the new dist
+
+                # mark the current vertex as the predecessor of next_vert
                 next_vert.pred = current_vert
-                pass
+
+                # update next_vert's key in priority queue with the new distance
+                # this will cause next_vert to be closer to the root and thus a
+                # higher priority
+                pq.decrease_key(next_vert, new_dist)
 
 
 if __name__ == "__main__":
