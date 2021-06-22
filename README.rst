@@ -33,6 +33,11 @@ Installing with pip from Github::
 Credits
 -------
 
+The algorithms and code were learned and inspired by the following:
+* Python Data Structures and Algorithms, 3rd Edition
+* Grokking Algorithms
+* Introduction to Algorithms, 3rd Edition
+
 This package was created with Cookiecutter_ and the `audreyr/cookiecutter-pypackage`_ project template.
 
 .. _Cookiecutter: https://github.com/audreyr/cookiecutter

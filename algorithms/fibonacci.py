@@ -25,7 +25,7 @@ def fibo_meme(func):
 def fibonacci(n):
     """Return Fibonacci sequence of n.
 
-    Args: 
+    Args:
         n (int): An integer
 
     Returns:

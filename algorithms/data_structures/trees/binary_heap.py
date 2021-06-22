@@ -21,24 +21,28 @@ class BinaryHeap:
 
     def _perc_down(self, i):
         while (i * 2) <= self.current_size:
-            mc = self.min_child(i)
+            mc = self._min_child(i)
             if self.heap_list[i] > self.heap_list[mc]:
-                self.heap_list[i], self.heap_list[mc] = (self.heap_list[mc],  # swap
-                                                         self.heap_list[i])
+                self.heap_list[i], self.heap_list[mc] = (
+                    self.heap_list[mc],  # swap
+                    self.heap_list[i],
+                )
             i = mc
 
     def _min_child(self, i):
-        left_child = (i * 2) + 1
-        if left_child > self.current_size:
-            return i * 2
+        right_child_idx = (i * 2) + 1
+        left_child_idx = i * 2  # because heap_list is not zero-indexed, these are the
+        # formulas for left and right children
+        if right_child_idx > self.current_size:
+            return left_child_idx
         else:
-            if self.heap_list[i * 2] < self.heap_list[left_child]:
-                return i * 2
+            if self.heap_list[left_child_idx] < self.heap_list[right_child_idx]:
+                return left_child_idx
             else:
-                return left_child
+                return right_child_idx
 
     def insert(self, k):
-        """Add a a new item to the heap."""
+        """Add a new item to the heap."""
         self.heap_list.append(k)
         self.current_size = self.current_size + 1
         self._perc_up(self.current_size)
@@ -47,10 +51,15 @@ class BinaryHeap:
         """Return the item with the minimum key value, leaving item in the heap."""
         pass
 
-    def del_min(self):
+    def pop_min(self):
         """Return the item with the minimum keyvalue, removing \
         the item from the heap."""
-        pass
+        ret_val = self.heap_list[1]
+        self.heap_list[1] = self.heap_list[self.current_size]
+        self.current_size = self.current_size - 1
+        self.heap_list.pop()
+        self._perc_down(1)
+        return ret_val
 
     def isEmpty(self):
         """Return true if the heap is empty, false otherwise."""
@@ -61,8 +70,13 @@ class BinaryHeap:
         pass
 
     def build_heap(self, items):
-        """Build a new heap from a list of keys."""
-        pass
+        """Build a new heap from a list of keys (a.k.a. heapify)."""
+        i = len(items) // 2
+        self.current_size = len(items)
+        self.heap_list = [0] + items[:]
+        while (i > 0):
+            self._perc_down(i)
+            i -= 1
 
     def print_tree(self):
         """Print string prepresentation of the tree."""
@@ -99,4 +113,7 @@ if __name__ == "__main__":
     b.insert(33)
     b.insert(17)
     b.insert(27)
+    b.pop_min()
+    b.pop_min()
+    b.pop_min()
     print(b.print_tree())
