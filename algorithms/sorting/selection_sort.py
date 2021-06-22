@@ -12,3 +12,4 @@ def selection_sort(a_list):
                 min_idx = j
         if min_idx != i:
             a_list[min_idx], a_list[i] = a_list[i], a_list[min_idx]
+    return a_list
