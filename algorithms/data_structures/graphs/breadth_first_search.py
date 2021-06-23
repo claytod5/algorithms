@@ -2,34 +2,35 @@
 
 
 from collections import deque
-
-graph = {}
-graph["you"] = ["alice", "bob", "claire"]
-graph["bob"] = ["anuj", "peggy"]
-graph["alice"] = ["peggy"]
-graph["claire"] = ["thom", "jonny"]
-graph["anuj"] = []
-graph["peggy"] = []
-graph["thom"] = []
-graph["jonny"] = []
+from backtrace import backtrace
 
 
-def person_is_seller(name):
-    return name[-1] == 'm'
-
-
-def breadth_first_search(name):
+def breadth_first_search(graph, start, end):
+    parent = dict()
     search_queue = deque()
-    search_queue += graph[name]
-    searched = []
+    search_queue += start
+    visited = set()
 
     while search_queue:
-        person = search_queue.popleft()
-        if person not in searched:
-            if person_is_seller(person):
-                print(person + " is a mango seller!")
-                return True
-            else:
-                search_queue += graph[person]
-                searched.append(person)
+        node = search_queue.popleft()
+        if node == end:
+            return backtrace(parent, start, end)
+        for each in graph[node]:
+            if each not in visited:
+                search_queue += graph[node]
+                parent[each] = node
+                visited.add(node)
+
     return False
+
+
+if __name__ == "__main__":
+    graph = {
+        "u": ["v", "x", "w"],
+        "x": ["u", "v", "w", "y"],
+        "v": ["u", "x", "w"],
+        "w": ["v", "y", "z", "x", "u"],
+        "z": ["w", "y"],
+        "y": ["z", "w", "x"],
+    }
+    print(breadth_first_search(graph, "z", "v"))
