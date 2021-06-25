@@ -47,12 +47,12 @@ def merge_sort(a_list):
 
 
 if __name__ == "__main__":
-    test_list = [randrange(0, 1000) for each in range(0, 100001)]
+    test_list = [randrange(0, 1000) for each in range(0, 1000)]
     t1 = Timer(
         "merge_sort(test_list)",
         "from __main__ import merge_sort, test_list",
     )
-    print("merge_sort(test_list): ", t1.timeit(number=10), "milliseconds")
+    print("merge_sort(test_list): ", t1.timeit(number=1), "milliseconds")
     # t2 = Timer("test_list.sort()", "from __main__ import test_list")
     # print("test_list.sort(): ", t2.timeit(number=1000), "milliseconds")
     # merge_sort(test_list)
