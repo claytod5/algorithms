@@ -26,4 +26,4 @@ def longest_common_substring(a, b):
 
 
 if __name__ == "__main__":
-    print(longest_common_substring("yellow", "yankee"))
+    print(longest_common_substring("bus", "gus"))

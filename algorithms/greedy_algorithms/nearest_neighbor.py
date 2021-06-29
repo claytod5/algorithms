@@ -4,6 +4,8 @@ to solve the travelling salesman problem approximately. In that problem,
 the salesman starts at a random city and repeatedly visits the nearest
 city until all have been visited.  The algorithm quickly yields a short
 tour, but usually not the optimal one.
+
+https://en.wikipedia.org/wiki/Nearest_neighbour_algorithm
 """
 
 import heapdict
