@@ -22,6 +22,7 @@ def lomuto_partition(a, low, high):
         # If current element is smaller than or equal to pivot
 
         # If not, then j will increase, but i will not, pointing to a larger item
+        # i will get 'stuck' on an item larger than pivot
         # That pointer is then used to swap with another item that is smaller than pivot
         if a[j] <= pivot:
 
