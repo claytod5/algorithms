@@ -1,20 +1,14 @@
-==========
-algorithms
-==========
+# Algorithms
 
 A collection of data structures and algorithms written by me to help me learn about them.
 
-
 * Free software: MIT license
 
-
-Features
---------
+# Features
 
 * TODO
 
-Usage
------
+# Usage
 
 1. Choose an algorithm or data structure to practice.
 2. Open file in editor.
@@ -23,15 +17,8 @@ Usage
 4. When done, run associated tests.
 5. After tests are successful, do a `git restore` on the file to get back to the original state.
 
-Installation
-------------
 
-Installing with pip from Github::
-
-        pip install git+https://www.github.com/claytod5/algorithms
-
-Credits
--------
+# Credits
 
 The algorithms and code were learned and inspired by the following:
 * Python Data Structures and Algorithms, 3rd Edition
