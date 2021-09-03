@@ -29,3 +29,8 @@ def simple_search(a, x):
             return i
     else:
         return None
+
+
+if __name__ == "__main__":
+    a = [1, 8, 3, 2, 0, 4, 3, 5, 6].sort()
+    print(binary_search(a, 4))

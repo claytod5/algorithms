@@ -3,10 +3,9 @@
 """Tests for algorithms in main directory of algorithms package."""
 
 import pytest
-import pytest_mock
 
 from algorithms.binary_search import binary_search
-from algorithms.fibonacci import fibonacci
+from algorithms.dynamic_programming.fibonacci import fibonacci
 from algorithms.is_prime import is_prime
 
 

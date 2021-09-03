@@ -1,6 +1,7 @@
 from functools import lru_cache
 
 
+@lru_cache
 def can_sum(n, a):
     if n == 0:
         return True

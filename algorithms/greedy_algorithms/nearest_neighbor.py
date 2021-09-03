@@ -14,7 +14,7 @@ import heapdict
 def nearest_neighbor(graph, start):
     visited = set(start)
     traversed = [start]
-    for each in graph[traversed[-1]]:
+    for _ in graph[traversed[-1]]:
         pq = heapdict.heapdict(
             {k: v for k, v in graph[traversed[-1]].items() if k not in visited}
         )
