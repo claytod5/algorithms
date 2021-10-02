@@ -2,7 +2,7 @@
 name = "algorithms"
 version = "0.1.0"
 description = "A collection of data structures and algorithms written by me to help me learn about them."
-authors = ["claytod5 <dr_falken1983@protonmail.com>"]
+authors = ["claytod5 <claytod5@protonmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
