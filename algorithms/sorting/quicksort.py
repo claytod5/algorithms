@@ -11,11 +11,9 @@ def pysort(a):
             (left if each <= pivot else right).append(each)
 
         return pysort(left) + [pivot] + pysort(right)
-
-
 def lomuto_partition(a, low, high):
-    i = low - 1
-    pivot = a[high]
+    i = low - 1  # set i as less than lowest index
+    pivot = a[high]  # set pivot as last item's value
 
     for j in range(low, high):
 
