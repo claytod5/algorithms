@@ -40,14 +40,27 @@ def fibonacci(n):
 
 
 def fib_iter(n):
-    prev_two = 0
-    prev_one = 1
-    if n == 0:
-        return 0
-    elif n == 1:
-        return 1
+    if n < 2:
+        return n
     else:
-        for each in range(n - 1):
-            res = prev_two + prev_one
-            prev_two, prev_one = prev_one, res
-        return res
+        a = 0
+        b = 1
+        for _ in range(n - 1):
+            a, b = b, a + b
+        return b
+
+
+def fib_identify(n):
+    a = 5 * (n ** 2)
+    plus = a + 4
+    minus = a - 4
+    plus_chk = int((plus ** 0.5)) ** 2
+    minus_chk = int((minus ** 0.5)) ** 2
+    if plus_chk == plus or minus_chk == minus:
+        return True
+    else:
+        return False
+
+
+if __name__ == "__main__":
+    print(fib_identify(787))
