@@ -1,18 +1,11 @@
 """Python implementation of merge sort."""
 
-from random import randrange
-from timeit import Timer
-
 
 def merge_sort(a_list):
     """Sort list using merge_sort algorithm.
 
     :param a_list: list of items
-    :param a: starting index of a_list
-    :param b: ending index of a_list
-
-    :returns: sorted list
-
+    :type a_list: list
     """
     if len(a_list) > 1:
 
@@ -44,16 +37,3 @@ def merge_sort(a_list):
             a_list[k] = right_half[j]
             j = j + 1
             k = k + 1
-
-
-if __name__ == "__main__":
-    test_list = [randrange(0, 1000) for each in range(0, 1000)]
-    t1 = Timer(
-        "merge_sort(test_list)",
-        "from __main__ import merge_sort, test_list",
-    )
-    print("merge_sort(test_list): ", t1.timeit(number=1), "milliseconds")
-    # t2 = Timer("test_list.sort()", "from __main__ import test_list")
-    # print("test_list.sort(): ", t2.timeit(number=1000), "milliseconds")
-    # merge_sort(test_list)
-    # print(test_list)

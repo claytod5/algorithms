@@ -90,3 +90,7 @@ class TestPrimeFactorFunctions(unittest.TestCase):
             with self.subTest():
                 self.assertEqual(prime_factors(i[0]), i[1])
                 self.assertEqual(unique_prime_factors(i[0]), i[2])
+
+
+if __name__ == "__main__":
+    unittest.main()
