@@ -21,7 +21,7 @@ class DoublyLinkedList(SinglyLinkedList):
         temp.next = self.head
         self.head = temp
 
-    def popFirst(self):
+    def popleft(self):
         head = self.head
         self.head = self.head.next
         self.head.prev = None
