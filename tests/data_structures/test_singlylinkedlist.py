@@ -1,38 +1,34 @@
 """Tests for linkedlist implementations."""
 
-import pytest
+import unittest
 
 from algorithms.data_structures.collections.singly_linked_list import SinglyLinkedList
 
 
-@pytest.fixture()
-def a_list(request):
-    request.cls.a = SinglyLinkedList(14, "a", 65.7, "golf")
-    yield
+class TestSinglyLinkedList(unittest.TestCase):
+    def setUp(self):
+        self.arr = SinglyLinkedList(14, "a", 65.7, "golf")
 
-
-@pytest.mark.usefixtures("a_list")
-class TestSinglyLinkedList:
     def test_isEmpty(self):
-        assert not self.a.isEmpty()
+        self.assertFalse(self.arr.isEmpty())
 
     def test_prepend(self):
-        self.a.prepend("abba")
-        assert self.a.head.data == "abba"
+        self.arr.prepend("abba")
+        self.assertEqual(self.arr.head.data, "abba")
 
     def test_append(self):
-        self.a.append("papa")
-        assert self.a.tail.data == "papa"
+        self.arr.append("papa")
+        self.assertEqual(self.arr.tail.data, "papa")
 
     def test_pop_first(self):
-        res = self.a.pop_first()
-        assert res.data == 14
-        assert self.a.head.data == "a"
+        res = self.arr.pop_first()
+        self.assertEqual(res.data, 14)
+        self.assertEqual(self.arr.head.data, "a")
 
     def test_remove(self):
-        self.a.remove("golf")
-        assert self.a.remove("golf") == "Not Found"
+        self.arr.remove("golf")
+        self.assertEqual(self.arr.remove("golf"), "Not Found")
 
     def test_index(self):
-        assert self.a.index("a") == 1
-        assert self.a.index("golf") == 3
+        self.assertEqual(self.arr.index("a"), 1)
+        self.assertEqual(self.arr.index("golf"), 3)
