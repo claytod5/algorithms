@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from backtrace import backtrace
+from algorithms.data_structures.graphs.backtrace import backtrace
 
 
 def depth_first_search(graph, start, visited=set()):
@@ -25,6 +25,8 @@ def dfs_iterative(graph, start, end):
                 visited.add(node)
                 stack.append(node)
                 parent[node] = vertex
+
+    return False
 
 
 if __name__ == "__main__":
