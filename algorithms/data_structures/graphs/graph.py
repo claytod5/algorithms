@@ -1,3 +1,5 @@
+"""An object-oriented graph implementation."""
+
 from collections import deque
 
 from vertex import Vertex
