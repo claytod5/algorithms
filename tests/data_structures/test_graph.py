@@ -5,6 +5,7 @@ from algorithms.data_structures.graphs.depth_first_search import (
     depth_first_search,
     dfs_iterative,
 )
+from algorithms.data_structures.graphs.dijkstra import dijkstra
 
 
 class Test_Graph_Algos(unittest.TestCase):
@@ -19,6 +20,15 @@ class Test_Graph_Algos(unittest.TestCase):
         "a": ["z"],
     }
 
+    weighted_graph = {
+        "u": {"v": 2, "x": 1, "w": 5},
+        "x": {"u": 1, "v": 2, "w": 3, "y": 1},
+        "v": {"u": 2, "x": 2, "w": 3},
+        "w": {"v": 3, "y": 1, "z": 5, "x": 3, "u": 5},
+        "z": {"w": 3, "y": 2},
+        "y": {"z": 1, "w": 1, "x": 1},
+    }
+
     def test_dfs_recursive(self):
 
         self.assertEqual(
@@ -30,15 +40,17 @@ class Test_Graph_Algos(unittest.TestCase):
         self.assertEqual(
             ["z", "w", "v"], dfs_iterative(self.unweighted_graph, "z", "v")
         )
-        self.assertFalse(
-                dfs_iterative(self.unweighted_graph, "u", "a")
-                )
+        self.assertFalse(dfs_iterative(self.unweighted_graph, "u", "a"))
 
     def test_bfs(self):
         self.assertEqual(
             {"w", "z", "y", "u", "v", "x"},
             breadth_first_search(self.unweighted_graph, "z"),
         )
+
+    def test_dijkstra(self):
+        self.assertEqual(dijkstra(self.weighted_graph, "u", "z"),
+                "u --> x --> y --> z")
 
 
 if __name__ == "__main__":

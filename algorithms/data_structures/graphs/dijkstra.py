@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import heapdict
-from backtrace import backtrace
+from algorithms.data_structures.graphs.backtrace import backtrace
 
 
 def dijkstra(graph, start, end):
@@ -21,7 +21,6 @@ def dijkstra(graph, start, end):
                 distance[next_vert] = new_distance
                 parent[next_vert] = current_vertex
                 pq[next_vert] = new_distance
-    breakpoint()
     return " --> ".join(backtrace(parent, start, end))
 
 
